@@ -1,0 +1,507 @@
+<!-- Load the Polymer.Element base class -->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="my-se-view">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+
+        padding: 16px;
+      }
+      .news h2 + .feature-content {
+  margin-top: 20px;
+}
+.main > .feature-content,
+.main > .feature-content-twitter-wrap,
+.feature-content,
+.feature-content-twitter-wrap {
+  background-color: transparent;
+}
+@media only screen and (min-width: 61.25em) {
+  .main > .feature-content,
+  .main > .feature-content-twitter-wrap,
+  .feature-content,
+  .feature-content-twitter-wrap {
+    padding: 0;
+  }
+}
+.tab-bar + .main > .feature-content,
+.tab-bar + .main > .feature-content-twitter-wrap,
+.tab-bar + .feature-content,
+.tab-bar + .feature-content-twitter-wrap {
+  margin-top: 40px;
+}
+@media only screen and (min-width: 61.25em) {
+  .main > .feature-content-twitter-wrap,
+  .feature-content-twitter-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+@media only screen and (min-width: 61.25em) {
+  .feature-content-twitter__content {
+    width: 66.67%;
+    padding-right: 10px;
+  }
+}
+.feature-content-twitter__content + .feature-content-twitter__aside {
+  margin-top: 50px;
+}
+@media only screen and (min-width: 61.25em) {
+  .feature-content-twitter__content + .feature-content-twitter__aside {
+    margin-top: 0;
+  }
+}
+@media only screen and (min-width: 61.25em) {
+  .feature-content-twitter__aside {
+    width: 33.33%;
+    padding-left: 10px;
+  }
+}
+.feature-content-twitter__aside-content {
+  max-height: 1000px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #f1f1f1;
+  -webkit-box-shadow: 0 1px 0 0 rgba(192, 192, 192, 0.5);
+          box-shadow: 0 1px 0 0 rgba(192, 192, 192, 0.5);
+}
+@media only screen and (min-width: 61.25em) {
+  .feature-content-twitter__aside-content {
+    height: 100%;
+  }
+}
+.feature-content-twitter__aside a.twitter-timeline {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+}
+.feature-content-twitter__aside .twitter-timeline {
+  max-height: 400px !important;
+}
+@media only screen and (min-width: 61.25em) {
+  .feature-content-twitter__aside .twitter-timeline {
+    max-height: 1000px !important;
+  }
+}
+.feature-content-noresults {
+  display: none;
+  padding: 26px;
+  background: #333333;
+  font-weight: normal;
+  color: #fff;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  text-transform: uppercase;
+}
+.feature-content-noresults.is-visible {
+  display: block;
+}
+.feature-content-filter {
+  width: 100%;
+  margin-bottom: 26px;
+}
+.feature-content-filter form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.feature-content-filter select {
+  height: 35px;
+  margin-bottom: 5px;
+  padding: 6px 2px;
+  font-size: 0.875rem;
+  line-height: 1;
+  font-weight: 400;
+  border: 0;
+  border-bottom: 1px solid #333333;
+  vertical-align: top;
+}
+.feature-content-filter select,
+.feature-content-filter .selectize-control {
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+}
+@media only screen and (min-width: 61.25em) {
+  .feature-content-filter select,
+  .feature-content-filter .selectize-control {
+    display: inline-block;
+    width: 30%;
+    margin: 0 1.5%;
+  }
+}
+.feature-content-filter select:first-of-type,
+.feature-content-filter .selectize-control:first-of-type {
+  margin-left: 0;
+}
+.feature-content-filter select:last-of-type,
+.feature-content-filter .selectize-control:last-of-type {
+  margin-right: 0;
+}
+.feature-content-filter select .selectize-input,
+.feature-content-filter .selectize-control .selectize-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #333333;
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-radius: 0;
+}
+.feature-content-filter select .selectize-input input,
+.feature-content-filter .selectize-control .selectize-input input {
+  display: inline;
+  color: #333333;
+  cursor: pointer;
+}
+.feature-content-filter select .selectize-input input::-webkit-input-placeholder,
+.feature-content-filter .selectize-control .selectize-input input::-webkit-input-placeholder {
+  color: #333333;
+}
+.feature-content-filter select .selectize-input input:-ms-input-placeholder,
+.feature-content-filter .selectize-control .selectize-input input:-ms-input-placeholder {
+  color: #333333;
+}
+.feature-content-filter select .selectize-input input::-ms-input-placeholder,
+.feature-content-filter .selectize-control .selectize-input input::-ms-input-placeholder {
+  color: #333333;
+}
+.feature-content-filter select .selectize-input input::placeholder,
+.feature-content-filter .selectize-control .selectize-input input::placeholder {
+  color: #333333;
+}
+.feature-content-filter select .selectize-input::after,
+.feature-content-filter .selectize-control .selectize-input::after {
+  border-color: #000 transparent transparent transparent;
+}
+@media (min-width: 590px) {
+  .feature-content-body {
+    -webkit-column-count: 2;
+            column-count: 2;
+    -webkit-column-gap: 20px;
+            column-gap: 20px;
+    padding-bottom: 30px;
+  }
+  .feature-content-body--columns-3 {
+    -webkit-column-count: 3;
+            column-count: 3;
+  }
+  .feature-content-twitter__content .feature-content-body,
+  .feature-content-twitter__content .feature-content-body--columns-3 {
+    -webkit-column-count: 2;
+            column-count: 2;
+  }
+  .feature-content-body:empty {
+    padding-bottom: 0;
+  }
+}
+.feature-content article:not(.feature-content-article),
+.feature-content-article {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  overflow: hidden;
+  -webkit-column-break-inside: avoid;
+          break-inside: avoid;
+  page-break-inside: avoid;
+}
+.feature-content article:not(.feature-content-article):first-child,
+.feature-content-article:first-child {
+  margin-top: 0;
+}
+.feature-content article:not(.feature-content-article) .links > a:not(.social),
+.feature-content-article .links > a:not(.social),
+.feature-content article:not(.feature-content-article) .links > span,
+.feature-content-article .links > span {
+  color: #42b4e6;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.4286;
+}
+.feature-content article:not(.feature-content-article) .links > a:not(.social)::before,
+.feature-content-article .links > a:not(.social)::before,
+.feature-content article:not(.feature-content-article) .links > span::before,
+.feature-content-article .links > span::before {
+  content: '>\00a0';
+}
+.feature-content article:not(.feature-content-article) .links,
+.feature-content-article .links {
+  position: relative;
+  bottom: 0;
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+  text-align: right;
+}
+@media only screen and (min-width: 61.25em) {
+  .feature-content article:not(.feature-content-article) .links,
+  .feature-content-article .links {
+    text-align: left;
+  }
+}
+.feature-content article:not(.feature-content-article) .links a,
+.feature-content-article .links a {
+  display: block;
+  text-align: left;
+}
+.main > section .feature-content article:not(.feature-content-article) h3,
+.main > section .feature-content-article h3,
+.main > div .feature-content article:not(.feature-content-article) h3,
+.main > div .feature-content-article h3,
+.main > section .feature-content article:not(.feature-content-article) h2,
+.main > section .feature-content-article h2,
+.main > div .feature-content article:not(.feature-content-article) h2,
+.main > div .feature-content-article h2,
+.feature-content article:not(.feature-content-article) h3,
+.feature-content-article h3,
+.feature-content article:not(.feature-content-article) h2,
+.feature-content-article h2 {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.125rem;
+  line-height: 1.4444;
+  font-weight: 400;
+  color: #333333;
+}
+.feature-content article:not(.feature-content-article) time,
+.feature-content-article time {
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+  color: #9fa0a4;
+}
+.feature-content article:not(.feature-content-article) p,
+.feature-content-article p {
+  margin: 5px 0 11px 0;
+  color: #333333;
+  font-size: 0.875rem;
+  line-height: 1.4286;
+}
+.feature-content article:not(.feature-content-article) span.adapt-img-wrapper,
+.feature-content-article span.adapt-img-wrapper,
+.feature-content article:not(.feature-content-article) img,
+.feature-content-article img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.feature-content-article {
+  padding-bottom: 1px;
+}
+.feature-content-body--columns-3 .feature-content-article:last-child {
+  padding-bottom: 2px;
+}
+.feature-content article:not(.feature-content-article),
+.feature-content-article-body {
+  padding: 20px 20px 19px;
+  background: #fff;
+  border: 1px solid #f1f1f1;
+  -webkit-box-shadow: 0 1px 0 0 rgba(192, 192, 192, 0.5);
+          box-shadow: 0 1px 0 0 rgba(192, 192, 192, 0.5);
+}
+@media only screen and (min-width: 61.25em) {
+  .feature-content article:not(.feature-content-article),
+  .feature-content-article-body {
+    padding-top: 26px;
+    padding-bottom: 25px;
+  }
+}
+.feature-content-article-body {
+  margin-bottom: 1px;
+  border-top: 0;
+}
+.feature-content-btn {
+  display: inline-block;
+  background: #fff;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0;
+  display: block;
+  margin: 0 auto;
+  padding: 13px 26px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #626469;
+  border: 1px solid #626469;
+  clear: both;
+}
+.feature-content-btn:hover {
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ffffff), to(#fff));
+  background-image: linear-gradient(to bottom, #ffffff 0, #fff 100%);
+}
+.feature-content-btn:active {
+  background: black;
+  color: #fff;
+}
+.feature-content-btn:active {
+  color: #fff;
+  background-color: #626469;
+}
+.feature-content-btn.is-hidden {
+  display: none;
+}
+    </style>
+
+<section class="feature-content js-feature-content">
+    <div class="feature-content-filter">
+        <form action="#" method="get">
+            <select name="Interests" tabindex="-1" class="selectized" style="display: none;">
+                <option value="" selected="selected"></option>
+            </select>
+            <div class="selectize-control single">
+                <div class="selectize-input items full has-options has-items">
+                    <div data-value="" class="item">Show all years...</div>
+                    <input type="text" autocomplete="off" tabindex="" style="width: 4px;">
+                </div>
+            </div>
+            <noscript>&lt;input type="submit" value="Refresh" /&gt;</noscript>
+        </form>
+    </div>
+    <div class="feature-content-body js-results">
+        <article class="feature-content-article">
+            <img src="/us/en/Images/m13.jpg" alt="Default Alternative Text" data-adaptive="true">	
+            <div class="feature-content-article-body">
+                <a href="http://www.example.com" target="_blank" xtm-t="E" xtm-n="{undeclared-component}">
+                    <h3> 
+                        5 Reasons the World Still Needs Mining 
+                    </h3>
+                </a>
+                <time pubdate="" datetime="2017-10-01">2/1/2017</time> 
+                <p> 
+                    Vestibulum interdum auctor bibendum. Cras hendrerit velit id lorem mattis pulvinar. Etiam ut euismod augue. quis semper metus ultricies sit amet. 
+                </p>
+                <div class="links"> 
+                    <a href="http://www.example.com" target="_blank" xtm-t="E" xtm-n="{undeclared-component}">
+                    Read more </a>
+                </div>
+            </div>
+        </article>
+        <article class="feature-content-article">
+            <div class="feature-content-article-body">
+                <a href="http://www.google.com" target="_blank" xtm-t="E" xtm-n="{undeclared-component}">
+                    <h3> 
+                        Fuel Management Made Simple 
+                    </h3>
+                </a>
+                <time pubdate="" datetime="2017-15-01">2/1/2017</time> 
+                <p> 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus rhoncus iaculis libero sit amet cursus. Aliquam accumsan, turpis vel efficitur aliquam, urna leo molestie risus, sed blandit nibh est venenatis justo. Donec vel aliquam massa. 
+                </p>
+                <div class="links"> 
+                    <a href="http://www.google.com" target="_blank" xtm-t="E" xtm-n="{undeclared-component}">
+                    Get the facts </a>
+                </div>
+            </div>
+        </article>
+        <article class="feature-content-article">
+            <img src="/us/en/Images/42-20284540-788x588.jpg" data-adaptive="true"> 
+            <div class="feature-content-article-body">
+                <a href="/us/en/work/insights/small-it-big-problems-log-data-reveals-the-unknown.jsp" xtm-t="A" xtm-n="{undeclared-component}">
+                    <h3>Small IT, big problems: Log data reveals the unknown</h3>
+                </a>
+                <time pubdate="" datetime="2104-00-21">8/21/2104</time> 
+                <div class="links">
+                    <a href="/us/en/work/insights/small-it-big-problems-log-data-reveals-the-unknown.jsp" xtm-t="A" xtm-n="{undeclared-component}">Read More</a> 
+                </div>
+            </div>
+        </article>
+        <article class="feature-content-article">
+            <img src="/us/en/Images/DVP4961086-490x490.jpg" data-adaptive="true"> 
+            <div class="feature-content-article-body">
+                <a href="/us/en/work/insights/stylish-solutions-for-daily-living.jsp" xtm-t="A" xtm-n="{undeclared-component}">
+                    <h3>Stylish solutions for daily living</h3>
+                </a>
+                <time pubdate="" datetime="2016-20-19">9/19/2016</time> 
+                <p>Schneider Electric™ has created smart, stylish solutions that offer homeowners enhanced comfort and greater control.</p>
+                <div class="links">
+                    <a href="/us/en/work/insights/stylish-solutions-for-daily-living.jsp" xtm-t="A" xtm-n="{undeclared-component}">Read More</a> 
+                </div>
+            </div>
+        </article>
+        <article class="feature-content-article">
+            <img src="/us/en/Images/Min001-490x490.jpg" data-adaptive="true"> 
+            <div class="feature-content-article-body">
+                <h3>Improving Mining Asset Performance with Predictive Analytics</h3>
+                <time pubdate="" datetime="2016-50-19">9/19/2016</time> 
+                <p>Predictive analytics boosts asset performance to extend their useful lifetime, decrease downtime, and improve overall equipment efficiency</p>
+                <div class="links">
+                    Read More 
+                </div>
+            </div>
+        </article>
+        <article class="feature-content-article">
+            <img src="/us/en/Images/BFW_001-490x490.jpg" data-adaptive="true"> 
+            <div class="feature-content-article-body">
+                <a href="/us/en/work/insights/announcing-a-more-proactive-approach-to-protecting-your-critical-infrastructure-24-6.jsp" xtm-t="A" xtm-n="{undeclared-component}">
+                    <h3>Proactive approach to protecting your critical infrastructure</h3>
+                </a>
+                <time pubdate="" datetime="2016-12-19">9/19/2016</time> 
+                <p>By utilizing customer-specific and global trending techniques, monitoring professionals identify and anticipate physical infrastructure threats before they occur—24/7.</p>
+                <div class="links">
+                    <a href="/us/en/work/insights/announcing-a-more-proactive-approach-to-protecting-your-critical-infrastructure-24-6.jsp" xtm-t="A" xtm-n="{undeclared-component}">Read More</a> 
+                </div>
+            </div>
+        </article>
+    </div>
+    <button type="button" class="feature-content-btn js-load-more">Load More</button>
+    </section>
+  </template>
+  <script>
+    // Your new element extends the Polymer.Element base class
+    class MySeView extends Polymer.Element {
+      static get is() { return 'my-se-view'; }
+
+      static get template() {
+        const fetchData = (url) => {
+          fetch(url)
+        }
+
+        const data = fetchData('https://api.myjson.com/bins/g4lwn');
+
+        console.log(fetch('https://api.myjson.com/bins/g4lwn'));
+
+        return data.map((el) => {
+          `
+          <article class="feature-content-article">
+            <img src="http://www-int1.schneider-electric.com${el.imageUrl}"> 
+            <div class="feature-content-article-body">
+                <a href="/us/en/work/insights/announcing-a-more-proactive-approach-to-protecting-your-critical-infrastructure-24-6.jsp"">
+                    <h3>${el.title}</h3>
+                </a>
+                <time datetime="${el.publicationDate}">${el.publicationDate}</time> 
+                <p>${el.description}</p>
+                <div class="links">
+                    <a href="${el.articleLink}"">Read More</a> 
+                </div>
+            </div>
+          </article>
+          `
+        })
+      }
+    }
+    //Now, register your new custom element so the browser can use it
+    customElements.define(MySeView.is, MySeView);
+  </script>
+</dom-module>
